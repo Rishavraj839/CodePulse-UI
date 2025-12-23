@@ -1,0 +1,45 @@
+<div class="container">
+  <h1 class="mt-3">Edit Category</h1>
+
+  <form [formGroup]="editCategoryFormGroup" (ngSubmit)="onSubmit()">
+    <div class="mt-3">
+      <div class="mt-3">
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" disabled [value]="id()" />
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+        @if (nameFormControl.touched && nameFormControl.hasError('required')) {
+        <p class="text-danger small">This is a required field</p>
+        } @if (nameFormControl.touched && nameFormControl.hasError('maxlength')) {
+        <p class="text-danger small">Category Name can only be 100 characters long</p>
+        }
+      </div>
+
+      <div class="mt-3">
+        <label class="form-label">URL Handle (Slug)</label>
+        <input type="text" class="form-control" formControlName="urlHandle" />
+
+        @if (urlHandleFormControl.touched && urlHandleFormControl.hasError('required')) {
+        <p class="text-danger small">This is a required field</p>
+        } @if (urlHandleFormControl.touched && urlHandleFormControl.hasError('maxlength')) {
+        <p class="text-danger small">Category Name can only be 100 characters long</p>
+        }
+      </div>
+
+      <div class="mt-3 d-flex gap-4">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="editCategoryFormGroup.valid === false"
+        >
+          Save
+        </button>
+
+        <button type="button" class="btn btn-danger" (click)="deleteCategory()">Delete</button>
+      </div>
+    </div>
+  </form>
+</div>

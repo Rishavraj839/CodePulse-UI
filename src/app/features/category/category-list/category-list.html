@@ -1,0 +1,38 @@
+<div class="container">
+
+    <h1 class="mt-3">Category List</h1>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/admin','categories','add']"  class="btn btn-primary">Add Category</a>
+    </div>
+     <div>
+    @if (isLoading()) {
+    <p>Loading...</p>
+    } @else { @if (isError()) {
+    <p>There has been an error...</p>
+    } @else {
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Url Handle</th>
+          <th> Actions </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (category of value(); track category.id) {
+        <tr>
+          <td>{{ category.id }}</td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.urlHandle }}</td>
+          <td>
+            <a class="btn btn-light" [routerLink]="['/admin/categories/edit', category.id]">Edit</a>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    } }
+  </div>
+</div>
