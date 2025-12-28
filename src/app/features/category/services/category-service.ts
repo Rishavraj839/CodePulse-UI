@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
 export class CategoryService {
   private http =inject(HttpClient);
   private apiBaseUrl = environment.apiBaseUrl;
+  
 
   addCategoryStatus = signal<'idle' | 'loading' | 'error' | 'success'>('idle');
   updateCategoryStatus = signal<'idle' | 'loading' | 'error' | 'success'>('idle');

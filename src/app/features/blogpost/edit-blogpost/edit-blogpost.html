@@ -1,8 +1,7 @@
-
 <div class="container">
-  <h1 class="mt-3">Add Blog Post</h1>
+  <h1 class="mt-3">Edit Blog Post</h1>
 
-  <form [formGroup]="addBlogPostForm" class="mt-3" (ngSubmit)="onSubmit()" >
+  <form [formGroup]="editBlogPostForm" class="mt-3" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label class="form-label">Title</label>
       <input type="text" class="form-control" formControlName="title" />
@@ -25,24 +24,25 @@
           <textarea class="form-control" formControlName="content" rows="5"></textarea>
         </div>
         <div class="col-6 p-2" style="max-height: 350px; overflow-y: scroll">
-          <markdown [data]="addBlogPostForm.controls.content.getRawValue()"></markdown>
+          <markdown [data]="editBlogPostForm.controls.content.getRawValue()"></markdown>
         </div>
       </div>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Featured Image URL </label>
-        <!-- <button class="btn btn-light" type="button" (click)="imageSelectorService.displayImageSelector()">
+      <label class="form-label"
+        >Featured Image URL
+        <button class="btn btn-light" type="button" (click)="openImageSelector()">
           Select Images
-        </button> -->
-      
+        </button>
+      </label>
 
-      @if (addBlogPostForm.controls.featuredImageUrl.getRawValue()) {
+      @if (editBlogPostForm.controls.featuredImageUrl.getRawValue()) {
       <div>
         <img
           style="width: 100px"
           class="my-2"
-          [src]="addBlogPostForm.controls.featuredImageUrl.getRawValue()"
+          [src]="editBlogPostForm.controls.featuredImageUrl.getRawValue()"
         />
       </div>
       }
@@ -81,9 +81,14 @@
       </select>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 d-flex gap-4">
       <button class="btn btn-primary" type="submit">Save</button>
+      <button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
   </form>
 </div>
+
+
+
+<app-image-selector></app-image-selector>
 
