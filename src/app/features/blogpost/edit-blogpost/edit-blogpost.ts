@@ -30,7 +30,7 @@ export class EditBlogpost {
   categoriesResponse = this.categoriesRef.value;
 
 
-   editBlogPostForm = new FormGroup({
+  editBlogPostForm = new FormGroup({
     title: new FormControl<string>('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(10), Validators.maxLength(100)],
@@ -64,6 +64,8 @@ export class EditBlogpost {
     }),
     categories: new FormControl<string[]>([]),
   });
+  
+
 
 
     effectRef = effect(() => {
@@ -80,6 +82,17 @@ export class EditBlogpost {
           .split('T')[0],
         urlHandle: this.blogPostResponse()?.urlHandle,
         categories: this.blogPostResponse()?.categories.map((x) => x.id),
+      });
+    }
+  });
+
+
+
+  selectedImageEffectRef = effect(() => {
+    const selectedImageUrl = this.imageSelectorService.selectedImage();
+    if (selectedImageUrl) {
+      this.editBlogPostForm.patchValue({
+        featuredImageUrl: selectedImageUrl,
       });
     }
   });

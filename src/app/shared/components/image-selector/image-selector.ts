@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ImageSelectorService } from '../../services/image-selector-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BlogImage } from '../../models/images.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-image-selector',

@@ -1,25 +1,51 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="container navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Codepulse</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">Code Pulse</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-       
+
+        @if (authService.user() && authService.user()?.roles?.includes("writer")) {
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Admin
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['admin','categories']">Categories</a></li>
-            <li><a class="dropdown-item" [routerLink]="['admin','blogposts']">Blog Posts</a></li>
+            <li><a class="dropdown-item" [routerLink]="['admin', 'categories']">Categories</a></li>
+            <li><a class="dropdown-item" [routerLink]="['admin', 'blogposts']">Blog Posts</a></li>
           </ul>
         </li>
+        }
       </ul>
+
+      <div class="d-flex gap-4 align-items-center">
+        @if (authService.user()) {
+        <span>{{ authService.user()?.email }}</span>
+
+        <button type="button" class="btn btn-primary" (click)="onLogout()">Logout</button>
+        } @else {
+        <a [routerLink]="['/login']" class="btn btn-primary">Login</a>
+        }
+      </div>
     </div>
   </div>
 </nav>

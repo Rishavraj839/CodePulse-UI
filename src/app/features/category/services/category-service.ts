@@ -18,7 +18,9 @@ export class CategoryService {
 
   addCategory(category:AddCategoryRequest){
     this.addCategoryStatus.set('loading');
-    this.http.post<void>(`${this.apiBaseUrl}/api/Categories`,category)
+    this.http.post<void>(`${this.apiBaseUrl}/api/Categories`,category,{
+      withCredentials:true
+    })
     .subscribe({
       next:()=>{
         this.addCategoryStatus.set('success');

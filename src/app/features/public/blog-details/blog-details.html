@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="my-5">
+    @if (isLoading()) {
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    } @else {
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+      <img
+        class="img-fluid"
+        [src]="blogDetailsResponse()?.featuredImageUrl"
+        [title]="blogDetailsResponse()?.title"
+      />
+
+      <h1 class="mt-4">{{ blogDetailsResponse()?.title }}</h1>
+
+      <div class="d-flex justify-content-between mt-4">
+        <span>{{ blogDetailsResponse()?.author }}</span>
+        <span>{{ blogDetailsResponse()?.publishedDate | date : 'dd-MM-yyyy' }}</span>
+      </div>
+
+      @if (blogDetailsResponse()?.categories) {
+      <div class="mt-4">
+        @for (category of blogDetailsResponse()?.categories; track category.id) {
+        <span class="badge bg-secondary me-2">{{ category.name }}</span>
+        }
+      </div>
+      }
+
+      <div class="mt-4 blog-content">
+        <markdown [data]="blogDetailsResponse()?.content"></markdown>
+      </div>
+
+
+    </div>
+    }
+  </div>
+</div>

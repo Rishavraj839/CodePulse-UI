@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="my-5">
+    @if (isLoading()) {
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    } @else {
+    <div class="row">
+      @for (blogPost of blogPostsResponse(); track blogPost.id) {
+      <div class="col col-md-4">
+        <div class="card mx-1 my-1">
+          <img [src]="blogPost.featuredImageUrl" class="card-img" />
+
+          <div class="card-body d-flex flex-column">
+            <h2 class="card-title">
+              {{ blogPost.title }}
+            </h2>
+            <p class="card-text">
+              {{ blogPost.shortDescription }}
+            </p>
+            <span class="d-flex align-items-end" style="flex: 1">
+              <a [routerLink]="['/blog', blogPost.urlHandle]" class="btn btn-primary">
+                Read More
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
