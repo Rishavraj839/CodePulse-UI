@@ -1,5 +1,13 @@
 # CodePulse
 
+#Walkthrough
+
+##When We Login As Admin Only-
+1.Home Page With below Options
+<img width="1911" height="1042" alt="image" src="https://github.com/user-attachments/assets/aead14cb-35b5-45a7-b484-c56623935d8b" />
+
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
 
 ## Development server
