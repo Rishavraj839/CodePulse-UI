@@ -1,6 +1,8 @@
 # CodePulse
 
 # Walkthrough
+A technical blogging platform that allows users to explore and learn development concepts
+across multiple categorized topics through structured and searchable content.
 
 ## When We Login As Admin Only-
 1.Home Page With below Options
